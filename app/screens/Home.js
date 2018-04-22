@@ -5,7 +5,6 @@ import { Logo } from '../components/Logo';
 import {InputWithButton} from '../components/TextInput';
 import {ClearButton} from '../components/Button';
 import {LastConverted} from '../components/Text';
-import {Header} from '../components/Header';
 
 const TEMP_BASE_CURRENCY= 'USD';
 const TEMP_QUOTE_CURRENCY= 'TND';
@@ -19,15 +18,15 @@ const TEMP_CONVERSION_RATE= '2.5';
 class Home extends Component {
 
         _handlePressBaseCurrency = () =>{
-            console.log('press base')
+            this.props.navigation.navigate('CurrencyList', {title: 'Base Currency'})
         }
 
         _handlePressQuoteCurrency = () =>{
-            console.log('press quote')
+            this.props.navigation.navigate('CurrencyList', {title: 'Quote Currency'})
         }
 
         _handlePressCryptoCurrency = () =>{
-            console.log('press Crypto')
+            this.props.navigation.navigate('CurrencyList', {title: 'Crypto Currency'})
         }
         _handleTextChange=(text)=>{
             
@@ -47,7 +46,6 @@ class Home extends Component {
 
                 <Container>
                     <StatusBar hidden />
-                    <Header onPress={this._handleOptionPress} />
                     <KeyboardAvoidingView behavior='padding'> 
                     <Logo />
                     <InputWithButton  
