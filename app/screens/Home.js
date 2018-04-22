@@ -24,7 +24,9 @@ class Home extends Component {
         _HandlePressCryptoCurrency = () =>{
             console.log('press Crypto')
         }
-
+        _handleTextChange=(text)=>{
+            
+        }
     render(){
         return(
             
@@ -36,7 +38,9 @@ class Home extends Component {
                     <InputWithButton  
                        buttonText={TEMP_BASE_CURRENCY}
                         onPress={this._HandlePressBaseCurrency}
-                        
+                        defaultValue={TEMP_BASE_PRICE }
+                        keyboardType='numeric'
+                        onChangeText={this._handleTextChange}
                     />
 
 
@@ -44,12 +48,14 @@ class Home extends Component {
                        buttonText={TEMP_QUOTE_CURRENCY}
                        onPress={this._HandlePressQuoteCurrency}
                        editable={false}
+                       defaultValue={TEMP_QUOTE_PRICE}
                     />
 
                     <InputWithButton 
                         buttonText={TEMP_CRYPTO_CURRENCY}
                         onPress={this._HandlePressCryptoCurrency}
-                       editable={false}
+                        editable={false}
+                        defaultValue={TEMP_CRYPTO_PRICE}
                     />
 
                 </Container>
