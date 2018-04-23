@@ -28,6 +28,7 @@ export default [
     'SEK',
     'SGD',
     'THB',
+    'TND',
     'TRY',
     'USD',
     'ZAR',

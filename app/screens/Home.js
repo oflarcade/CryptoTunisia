@@ -32,11 +32,11 @@ class Home extends Component {
         }
 
         _handlePressBaseCurrency = () =>{
-            this.props.navigation.navigate('CurrencyList', {title: 'Base Currency'})
+            this.props.navigation.navigate('CurrencyList', {title: 'Base Currency', type:'base'})
         }
 
         _handlePressQuoteCurrency = () =>{
-            this.props.navigation.navigate('CurrencyList', {title: 'Quote Currency'})
+            this.props.navigation.navigate('CurrencyList', {title: 'Quote Currency', type:'quote'})
         }
 
         _handlePressCryptoCurrency = () =>{
