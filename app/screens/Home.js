@@ -5,6 +5,8 @@ import { Logo } from '../components/Logo';
 import {InputWithButton} from '../components/TextInput';
 import {ClearButton} from '../components/Button';
 import {LastConverted} from '../components/Text';
+import {swapCurrency, changeCurrencyAmount} from '../actions/currencies';
+
 
 const TEMP_BASE_CURRENCY= 'USD';
 const TEMP_QUOTE_CURRENCY= 'TND';
@@ -28,12 +30,13 @@ class Home extends Component {
         _handlePressCryptoCurrency = () =>{
             this.props.navigation.navigate('CurrencyList', {title: 'Crypto Currency'})
         }
-        _handleTextChange=(text)=>{
-            
+        _handleTextChange=(amount)=>{
+            // TODO: make this work with this.props.dispatch
+            console.log(changeCurrencyAmount(amount))
         }
 
         _handleSwapCurrency =()=>{
-             
+            // TODO: make this work with this.props.dispatch
         }
 
         _handleOptionPress=()=>{
