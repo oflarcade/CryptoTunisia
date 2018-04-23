@@ -1,6 +1,6 @@
-import {combinedReducers} from 'redux';
+import {combineReducers} from 'redux';
 import currencies from './currencies';
 
-export default combinedReducers({
+export default combineReducers({
     currencies,
 });

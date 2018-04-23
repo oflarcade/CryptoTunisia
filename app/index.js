@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import RootNavigation from './navigation/rootNavigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import {Provider} from 'react-redux';
+import store from './config/store';
 
 EStyleSheet.build({
     $primaryBlue: '#e84118',
@@ -16,4 +17,9 @@ EStyleSheet.build({
     
 });
 
-export default () =><RootNavigation />;
+export default () =>(
+
+    <Provider store={store}>
+    <RootNavigation />
+    </Provider>
+);

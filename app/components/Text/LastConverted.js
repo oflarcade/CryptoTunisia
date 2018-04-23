@@ -14,7 +14,7 @@ const LastConverted =({base , quote, conversionRate, date}) =>{
 }
 
 LastConverted.propTypes= {
-    date: PropTypes.date,
+    date: PropTypes.object,
     base: PropTypes.string,
     quote: PropTypes.string,
     conversionRate: PropTypes.number,
