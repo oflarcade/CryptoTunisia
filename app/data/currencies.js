@@ -2,6 +2,7 @@ export default [
     'AUD',
     'BGN',
     'BRL',
+    'BTC',
     'CAD',
     'CHF',
     'CNY',

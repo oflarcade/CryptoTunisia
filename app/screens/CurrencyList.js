@@ -4,6 +4,7 @@ import {connect } from 'react-redux';
 import { FlatList, StatusBar, View } from 'react-native';
 import { ListItem, Separator } from '../components/List';
 import currencies from '../data/currencies';
+import BottomBannerAd from '../components/BottomBannerAd';
 import {changeBaseCurrency, changeQuoteCurrency} from '../actions/currencies';
 const TEMP_CURRENT_CURRENCY = 'USD';
 
@@ -14,6 +15,7 @@ class CurrencyList extends Component {
      dispatch: PropTypes.func,
      baseCurrency: PropTypes.string,
      quoteCurrency: PropTypes.string,
+     
    }
   handlePress = (currency) => {
     const {type} = this.props.navigation.state.params
@@ -25,7 +27,7 @@ class CurrencyList extends Component {
 
     this.props.navigation.goBack(null)
   };
-
+    
   render() {
       let comparisonCurrency= this.props.baseCurrency;
       if(this.props.navigation.state.params.type === 'quote'){
@@ -37,6 +39,7 @@ class CurrencyList extends Component {
       <View style={{ flex: 1 }}>
         <StatusBar hidden/>
         <FlatList
+          
           data={currencies}
           renderItem={({ item }) => (
             <ListItem
@@ -48,6 +51,7 @@ class CurrencyList extends Component {
           keyExtractor={item => item}
           ItemSeparatorComponent={Separator}
         />
+          <BottomBannerAd />
       </View>
     );
   }
@@ -56,9 +60,11 @@ class CurrencyList extends Component {
 const mapStateToProps = (state) =>{
   const baseCurrency =  state.currencies.baseCurrency;
   const quoteCurrency = state.currencies.quoteCurrency;
+ 
   return{
       baseCurrency,
       quoteCurrency,
+     
     };
 };
 

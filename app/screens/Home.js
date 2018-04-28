@@ -7,17 +7,9 @@ import { Logo } from '../components/Logo';
 import {InputWithButton} from '../components/TextInput';
 import {ClearButton} from '../components/Button';
 import {LastConverted} from '../components/Text';
-import {swapCurrency, changeCurrencyAmount} from '../actions/currencies';
-
-
-const TEMP_BASE_CURRENCY= 'USD';
-const TEMP_QUOTE_CURRENCY= 'TND';
-const TEMP_CRYPTO_CURRENCY = 'BTC';
-const TEMP_BASE_PRICE= '100';
-const TEMP_QUOTE_PRICE= '250';
-const TEMP_CRYPTO_PRICE= '0.0004';
-const TEMP_CONVERSION_DATE= new Date();
-const TEMP_CONVERSION_RATE= '2.5';
+import BottomBannerAd from '../components/BottomBannerAd';
+import styles from './styles';
+import {swapCurrency, changeCurrencyAmount, getInitialConversion} from '../actions/currencies';
 
 class Home extends Component {
 
@@ -27,23 +19,27 @@ class Home extends Component {
             baseCurrency: PropTypes.string,
             quoteCurrency: PropTypes.string,
             conversionRate: PropTypes.number,
+            conversionRateQ: PropTypes.number,
             isFetching: PropTypes.bool,
             lastConversionDate:PropTypes.object,
         }
 
+        componentWillMount(){
+            this.props.dispatch(getInitialConversion());
+        }
+
         _handlePressBaseCurrency = () =>{
-            this.props.navigation.navigate('CurrencyList', {title: 'Base Currency', type:'base'})
+            //this.props.navigation.navigate('CurrencyList', {title: 'Base Currency', type:'base'})
         }
 
         _handlePressQuoteCurrency = () =>{
             this.props.navigation.navigate('CurrencyList', {title: 'Quote Currency', type:'quote'})
         }
 
-        _handlePressCryptoCurrency = () =>{
-            this.props.navigation.navigate('CurrencyList', {title: 'Crypto Currency'})
-        }
+        
         _handleTextChange=(text)=>{
             this.props.dispatch(changeCurrencyAmount(text));
+
            
         }
 
@@ -56,18 +52,24 @@ class Home extends Component {
         }
 
     render(){
-        let quotePrice= (this.props.amount * this.props.conversionRate).toFixed(2);
+        let quotePrice= (this.props.amount * this.props.conversionRate).toFixed(6);
+        
+
         if(this.props.isFetching){
-            quotePrice= '...'
+            quotePrice= '...';
         }
        
 
         return(
             
-
-                <Container>
+            <View style={styles.container}>
+               
                     <StatusBar hidden />
                     <KeyboardAvoidingView behavior='padding'> 
+                    {/* <ClearButton 
+                        text='Reverse Currencies'
+                        onPress={this._handleSwapCurrency}
+                    /> */}
                     <Logo />
                     <InputWithButton  
                        buttonText={this.props.baseCurrency}
@@ -85,29 +87,28 @@ class Home extends Component {
                        defaultValue={quotePrice}
                     />
 
-                    <InputWithButton 
-                        buttonText={TEMP_CRYPTO_CURRENCY}
-                        onPress={this._handlePressCryptoCurrency}
-                        editable={false}
-                        defaultValue={TEMP_CRYPTO_PRICE}
-                    />
                     <LastConverted 
                     base={this.props.baseCurrency}
                     quote={this.props.quoteCurrency}
                     conversionRate={this.props.conversionRate}
                     date={this.props.lastConversionDate} />
-                    <ClearButton 
-                        text='Reverse Currencies'
-                        onPress={this._handleSwapCurrency}
-                    />
+                   
                     </KeyboardAvoidingView>
-                </Container>
-            
-            
+                   
+                         
+                <BottomBannerAd />
+                         
+                     
+            </View>
+
+              
         )
 
     }
 }
+
+
+
 
 const mapStateToProps =(state) =>{
         const baseCurrency= state.currencies.baseCurrency;
@@ -127,3 +128,7 @@ const mapStateToProps =(state) =>{
 
 
 export default connect(mapStateToProps)(Home);
+
+
+//banner AD fb ID:965450500299610_967596036751723
+//interstitial AD fb ID: 965450500299610_965451473632846
